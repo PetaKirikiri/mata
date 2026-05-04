@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import placeholderLogo from '@/assets/placeholder-logo.png';
+import { EcosystemAppSwitcher } from '@/components/EcosystemAppSwitcher';
 import { EcosystemProductBrand } from '@/components/EcosystemProductBrand';
 import { profileName } from '@/utils/names';
 
@@ -18,6 +19,7 @@ export function MataLayout({ children }: { children: ReactNode }) {
           <EcosystemProductBrand wordmark="mata" />
         </div>
         <div className="flex shrink-0 items-center gap-3">
+          <EcosystemAppSwitcher currentWordmark="mata" />
           <div className="hidden text-right leading-tight sm:block">
             <p className="text-xs font-semibold">{firstName}</p>
             <p className="text-[10px] text-portal-muted">{appUser?.role ?? 'classroom'}</p>
