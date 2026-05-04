@@ -19,7 +19,7 @@ export function MataLayout({ children }: { children: ReactNode }) {
           <EcosystemProductBrand wordmark="mata" />
         </div>
         <div className="flex shrink-0 items-center gap-3">
-          <EcosystemAppSwitcher currentWordmark="mata" />
+          <EcosystemAppSwitcher />
           <div className="hidden text-right leading-tight sm:block">
             <p className="text-xs font-semibold">{firstName}</p>
             <p className="text-[10px] text-portal-muted">{appUser?.role ?? 'classroom'}</p>
