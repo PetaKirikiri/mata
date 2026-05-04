@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
+import { EcosystemProductBrand } from '@/components/EcosystemProductBrand';
 import placeholderLogo from '@/assets/placeholder-logo.png';
 
 type LoginLocationState = {
@@ -43,7 +44,7 @@ export default function Login() {
       >
         <div className="flex items-center gap-2">
           <img src={placeholderLogo} alt="" aria-hidden className="h-8 w-8 rounded-sm object-cover" />
-          <h1 className="text-xl font-semibold">mata</h1>
+          <EcosystemProductBrand wordmark="mata" />
         </div>
         <p className="mt-2 text-sm text-portal-muted">Use your akomanga Supabase account.</p>
         <label className="mt-6 block text-sm">
