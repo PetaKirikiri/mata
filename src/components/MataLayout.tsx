@@ -1,9 +1,7 @@
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
-import placeholderLogo from '@/assets/placeholder-logo.png';
 import { EcosystemAppSwitcher } from '@/components/EcosystemAppSwitcher';
-import { EcosystemProductBrand } from '@/components/EcosystemProductBrand';
 import { profileName } from '@/utils/names';
 
 export function MataLayout({ children }: { children: ReactNode }) {
@@ -14,12 +12,8 @@ export function MataLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-portal-bg text-portal-ink antialiased">
       <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center justify-between border-b border-portal-border bg-portal-surface px-4 shadow-sm">
-        <div className="flex min-w-0 items-center gap-2">
-          <img src={placeholderLogo} alt="" aria-hidden className="h-7 w-7 shrink-0 rounded-sm object-cover" />
-          <EcosystemProductBrand wordmark="mata" />
-        </div>
+        <EcosystemAppSwitcher />
         <div className="flex shrink-0 items-center gap-3">
-          <EcosystemAppSwitcher />
           <div className="hidden text-right leading-tight sm:block">
             <p className="text-xs font-semibold">{firstName}</p>
             <p className="text-[10px] text-portal-muted">{appUser?.role ?? 'classroom'}</p>

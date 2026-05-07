@@ -1,14 +1,10 @@
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  ecosystemCurrentProductKey,
-  ecosystemSameOriginLinks,
-  isLikelyInAppWebView,
-} from '@/lib/ecosystemShell';
+import { ecosystemCurrentProductKey, ecosystemSameOriginLinks } from '@/lib/ecosystemShell';
+import placeholderLogo from '@/assets/placeholder-logo.png';
 
-/** Matches Akomanga `EcosystemAppSwitcher` (portal tokens); full document navigation only. */
 const SUMMARY_CLASS =
-  'inline-flex cursor-pointer list-none items-center gap-1.5 rounded-lg border border-portal-border bg-portal-surface px-3 py-1.5 text-sm font-semibold tracking-tight text-portal-ink shadow-sm hover:bg-portal-bg [&::-webkit-details-marker]:hidden';
+  'flex min-h-[2.75rem] cursor-pointer list-none items-center gap-2.5 rounded-xl border border-portal-border bg-portal-surface px-2.5 py-1.5 text-left shadow-md ring-1 ring-portal-border/40 hover:bg-portal-bg [&::-webkit-details-marker]:hidden';
 
 const MENU_CLASS =
   'absolute right-0 top-full z-[100] mt-1.5 min-w-[12rem] rounded-lg border border-portal-border bg-portal-surface py-1 shadow-lg';
@@ -26,12 +22,9 @@ export function EcosystemAppSwitcher() {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const { pathname } = useLocation();
 
-  if (typeof navigator !== 'undefined' && isLikelyInAppWebView()) {
-    return null;
-  }
-
   const links = ecosystemSameOriginLinks();
   const current = ecosystemCurrentProductKey(pathname);
+  const summaryLabel = links.find((item) => item.key === current)?.label ?? 'Mata';
 
   const follow = (href: string, e: React.MouseEvent) => {
     if (isModifiedClick(e)) return;
@@ -41,10 +34,13 @@ export function EcosystemAppSwitcher() {
   };
 
   return (
-    <details ref={detailsRef} className="relative shrink-0">
-      <summary className={SUMMARY_CLASS} aria-label="Products menu" aria-haspopup="menu">
-        <span>Products</span>
-        <span className="text-portal-muted" aria-hidden>
+    <details ref={detailsRef} className="relative min-w-0 shrink-0">
+      <summary className={SUMMARY_CLASS} aria-label={`Switch product — current: ${summaryLabel}`} aria-haspopup="menu">
+        <img src={placeholderLogo} alt="" aria-hidden className="h-7 w-7 shrink-0 rounded-sm object-cover" />
+        <span className="min-w-0 max-w-[12rem] truncate text-lg font-semibold tracking-tight text-portal-ink">
+          {summaryLabel}
+        </span>
+        <span className="shrink-0 text-portal-muted" aria-hidden>
           ▾
         </span>
       </summary>
